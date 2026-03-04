@@ -1,0 +1,60 @@
+; This gromacs .mdp file was generated
+; as /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/seg_11_NPT_PROD.mdp
+; by /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/dynamics-parameter-generation.py
+; on 2026-01-24 08:29:12.548016
+
+; input handling
+gen-vel                  = no
+continuation             = yes
+
+; integration
+integrator               = md
+dt                       = 0.004
+nsteps                   = 25000000
+tinit                    = 21800.0
+mass-repartition-factor  = 3
+
+; bonded interactions
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 4
+lincs-iter               = 1
+
+; neighbor searching
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+
+; electrostatics
+coulombtype              = PME
+pme-order                = 4
+fourierspacing           = 0.12
+rcoulomb                 = 1.2
+
+; Van der Waals
+vdwtype                  = cut-off
+vdw-modifier             = force-switch
+rvdw-switch              = 1
+rvdw                     = 1.2
+
+; center of mass motion removal
+comm-mode                = linear
+
+; thermostat
+tcoupl                   = v-rescale
+tc_grps                  = System
+tau-t                    = 1
+ref-t                    = 310.15
+
+; barostat
+pcoupl                   = c-rescale
+pcoupltype               = isotropic
+tau-p                    = 5
+ref-p                    = 1.01325
+compressibility          = 4.5e-05
+refcoord-scaling         = com
+
+; output control; frequencies in steps
+nstlog                   = 25000
+nstenergy                = 25000
+nstxout-compressed       = 25000

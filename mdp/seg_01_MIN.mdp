@@ -1,0 +1,34 @@
+; This gromacs .mdp file was generated
+; as /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/seg_01_MIN.mdp
+; by /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/dynamics-parameter-generation.py
+; on 2026-01-24 08:29:12.546902
+
+; integration
+integrator               = steep
+emstep                   = 0.001
+nsteps                   = 10000
+emtol                    = 1000
+
+; neighbor searching
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+
+; electrostatics
+coulombtype              = PME
+pme-order                = 4
+fourierspacing           = 0.12
+rcoulomb                 = 1.2
+
+; Van der Waals
+vdwtype                  = cut-off
+vdw-modifier             = force-switch
+rvdw-switch              = 1
+rvdw                     = 1.2
+
+; restraints
+define                   = -DPOSRES -DPOSRES_FC_BB=4000 -DPOSRES_FC_SC=4000 -DPOSRES_FC_SOD=400 -DPOSRES_FC_CLA=400 -DPOSRES_FC_TIP3=400
+
+; output control; frequencies in steps
+nstxout                  = 50
+nstenergy                = 10
