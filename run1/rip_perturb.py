@@ -26,7 +26,7 @@ TOP = "../input/topol.top"
 # MIN_OUTPUT = "seg_01_MIN"   # base name (without .gro)
 MIN_OUTPUT = "seg_11_NPT_PROD_01"  # starting from production phase, rather than minimized strucutre
 TEMP_PERTURB = 300.0        # K
-OUT_NAME = "seg_01_PERT.gro"
+OUT_NAME = "seg_11_NPT_PROD_01_PERT.gro"
 BOX_LINE = None
 
 def maxwell_velocity(temp, mass):
