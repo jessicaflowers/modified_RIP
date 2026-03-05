@@ -9,8 +9,10 @@ continuation             = yes
 
 ; integration
 integrator               = md
-dt                       = 0.004
-nsteps                   = 25000000
+dt                       = 0.004 ; 0.004 ps = 4 fs
+; nsteps                   = 25000000 ; multiply by dt to get total length = 100,000 ps = 100 ns
+nsteps                   = 500000 ; multiply by dt to get total length = 2 ns
+
 tinit                    = 21800.0
 mass-repartition-factor  = 3
 

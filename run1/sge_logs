@@ -1,0 +1,364 @@
+Starting Task ID: 1
+Running on Host: msg-iogpu6.wynton.ucsf.edu
+Assigned GPU ID: 0
+Found pulse directory: pulse_res_203 (from starting ID 1)
+Running in: /wynton/home/rotation/jessicaflowers/modified_RIP/run1/pulse_res_203
+Running production MDP: ../../mdp/seg_11_NPT_PROD.mdp
+Start structure: seg_11_NPT_PROD_01_PERT.gro -> output deffnm: seg_11_NPT_PROD_01
+Topology: ../../input/topol.top
+                      :-) GROMACS - gmx grompp, 2025.4 (-:
+
+Executable:   /wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA/bin/gmx
+Data prefix:  /wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA
+Working dir:  /wynton/home/rotation/jessicaflowers/modified_RIP/run1/pulse_res_203
+Command line:
+  gmx grompp -f ../../mdp/seg_11_NPT_PROD.mdp -o seg_11_NPT_PROD_01.tpr -c seg_11_NPT_PROD_01_PERT.gro -r seg_11_NPT_PROD_01_PERT.gro -p ../../input/topol.top -n ../../input/index.ndx -maxwarn 10
+
+Generating 1-4 interactions: fudge = 1
+atom name 44 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 45 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 46 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 47 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 48 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 49 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 248 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 249 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 250 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 251 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 252 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 253 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 271 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 272 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 273 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 274 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 275 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 276 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 309 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 310 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+(more than 20 non-matching atom names)
+
+WARNING 1 [file topol.top, line 26]:
+  152 non-matching atom names
+  atom names from ../../input/topol.top will be used
+  atom names from seg_11_NPT_PROD_01_PERT.gro will be ignored
+
+
+
+NOTE 1 [file topol.top, line 26]:
+  The bond in molecule-type PROC between atoms 675 CG and 676 OD1 has an
+  estimated oscillational period of 2.2e-02 ps, which is less than 10 times
+  the time step of 4.0e-03 ps.
+  Maybe you forgot to change the constraints mdp option.
+
+Number of degrees of freedom in T-Coupling group SYSTEM is 143098.00
+
+There was 1 NOTE
+
+There was 1 WARNING
+
+GROMACS reminds you: "Fresh Air, Green Hair" (Frank Black)
+
+Setting the LD random seed to -335610881
+
+Generated 900 of the 903 non-bonded parameter combinations
+
+Generated 528 of the 903 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PROC'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'SOD'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'CLA'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'TIP3'
+
+turning H bonds into constraints...
+
+atom name 44 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 45 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 46 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 47 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 48 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 49 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 248 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 249 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 250 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 251 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 252 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 253 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 271 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 272 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+atom name 273 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA1 - HT3)
+
+atom name 274 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HA2 - CA)
+
+atom name 275 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (C - HA1)
+
+atom name 276 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (O - HA2)
+
+atom name 309 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (HN - HT1)
+
+atom name 310 in ../../input/topol.top and seg_11_NPT_PROD_01_PERT.gro does not match (CA - HT2)
+
+(more than 20 non-matching atom names)
+
+Taking velocities from 'seg_11_NPT_PROD_01_PERT.gro'
+The smallest mass in the system is 1.008, setting the minimum mass to 3.024
+
+The largest distance between excluded atoms is 0.419 nm between atom 3278 and 3286
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 310.15 K
+
+Calculated rlist for 1x1 atom pair-list as 1.312 nm, buffer size 0.112 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.231 nm, buffer size 0.031 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 80x80x80, spacing 0.111 0.111 0.111
+
+Estimate for the relative computational load of the PME mesh part: 0.12
+
+This run will generate roughly 12 Mb of data
+                      :-) GROMACS - gmx mdrun, 2025.4 (-:
+
+Executable:   /wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA/bin/gmx
+Data prefix:  /wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA
+Working dir:  /wynton/home/rotation/jessicaflowers/modified_RIP/run1/pulse_res_203
+Command line:
+  gmx mdrun -v -deffnm seg_11_NPT_PROD_01 -nt 8 -ntomp 8 -ntmpi 1 -nb gpu -bonded gpu -pin off
+
+Compiled SIMD is SSE4.1, but AVX_256 might be faster (see log).
+Reading file seg_11_NPT_PROD_01.tpr, VERSION 2025.4 (single precision)
+Changing nstlist from 20 to 50, rlist from 1.231 to 1.386
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+Using 8 OpenMP threads 
+
+starting mdrun 'Title'
+500000 steps,   2000.0 ps.
+step 0step 100, will finish Wed Mar  4 18:05:44 2026terminate called after throwing an instance of 'gmx::InternalError'
+  what():  Freeing of the device buffer failed. CUDA error #700 (cudaErrorIllegalAddress): an illegal memory access was encountered.
+run_dynamics.sh: line 74: 2294544 Aborted                 (core dumped) gmx mdrun -v -deffnm "${ISTEP}" -nt "${NTHREAD}" -ntomp "${NTOMP}" -ntmpi 1 -nb gpu -bonded gpu -pin off
+Production run finished (or failed). Check seg_11_NPT_PROD_01.log and seg_11_NPT_PROD_01.trr/.cpt for outputs.
+CONDA_SHLVL=1
+LD_LIBRARY_PATH=/usr/local/cuda-12.5/lib64:/usr/lib64/openmpi/lib
+CONDA_EXE=/wynton/home/rotation/jessicaflowers/miniconda2/bin/conda
+__LMOD_REF_COUNT_PATH=/usr/local/cuda-12.5/bin:1;/usr/lib64/openmpi/bin:1;/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:1;/wynton/home/rotation/jessicaflowers/miniconda2/bin:1;/wynton/home/rotation/jessicaflowers/miniconda2/condabin:1;/wynton/home/rotation/jessicaflowers/.local/bin:1;/wynton/home/rotation/jessicaflowers/bin:1;/opt/sge/bin:1;/opt/sge/bin/lx-amd64:1;/scratch/3179637.1.gpu.q:1;/usr/local/bin:1;/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/wynton/home/rotation/jessicaflowers/Tools/openbabel-install/bin:1
+_ModuleTable002_=dWRhLzEyLjUiLApmdWxsTmFtZSA9ICJjdWRhLzEyLjUiLApsb2FkT3JkZXIgPSAzLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImN1ZGEvMTIuNSIsCndWID0gIjAwMDAwMDAxMi4wMDAwMDAwMDUuKnpmaW5hbCIsCn0sCm1waSA9IHsKZm4gPSAiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9tcGkvb3Blbm1waS14ODZfNjQiLApmdWxsTmFtZSA9ICJtcGkvb3Blbm1waS14ODZfNjQiLApsb2FkT3JkZXIgPSAxLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIm1waSIsCndWID0gIipvcGVubXBpLip4LjAwMDAwMDA4Ni4qXy4wMDAwMDAwNjQuKnpmaW5hbCIsCn0s
+QUEUE=gpu.q
+GOTO_NUM_THREADS=1
+MPI_PYTHON3_SITEARCH=/usr/lib64/python3.6/site-packages/openmpi
+LANG=en_US.UTF-8
+HISTCONTROL=ignoredups
+SGE_O_HOST=dev2
+HOSTNAME=msg-iogpu6.wynton.ucsf.edu
+OPENBLAS_NUM_THREADS=1
+OLDPWD=/wynton/home/rotation/jessicaflowers/modified_RIP/run1
+CUDA_LIB_PATH=/usr/local/cuda-12.5/lib64
+ENVIRONMENT=BATCH
+REQUEST=rip_3g33
+SGE_STDIN_PATH=/dev/null
+SGE_CELL=wynton
+FPATH=/usr/share/lmod/lmod/init/ksh_funcs
+CONDA_PREFIX=/wynton/home/rotation/jessicaflowers/miniconda2
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/usr/local/cuda-12.5/lib64:1;/usr/lib64/openmpi/lib:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/usr/lib64/openmpi/lib/pkgconfig:1
+_CE_M=
+which_declare=declare -f
+NHOSTS=1
+SGE_O_WORKDIR=/wynton/home/rotation/jessicaflowers/modified_RIP/run1
+USER=jessicaflowers
+SGE_TASK_ID=1
+SGE_TASK_FIRST=1
+NSLOTS=1
+__LMOD_REF_COUNT_MODULEPATH=/salilab/diva1/home/modules:1;/etc/modulefiles:1;/usr/share/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1
+PWD=/wynton/home/rotation/jessicaflowers/modified_RIP/run1/pulse_res_203
+HOME=/wynton/home/rotation/jessicaflowers
+NQUEUES=1
+CONDA_PYTHON_EXE=/wynton/home/rotation/jessicaflowers/miniconda2/bin/python
+TMP=/scratch/3179637.1.gpu.q
+SGE_O_HOME=/wynton/home/rotation/jessicaflowers
+LMOD_VERSION=8.7.65
+JOB_NAME=rip_3g33
+BASH_ENV=/usr/share/lmod/lmod/init/bash
+MPI_FORTRAN_MOD_DIR=/usr/lib64/gfortran/modules/openmpi
+SGE_TASK_LAST=1
+_CE_CONDA=
+MKL_NUM_THREADS=1
+MPI_COMPILER=openmpi-x86_64
+SGE_ACCOUNT=sge
+SGE_ROOT=/opt/sge
+MPI_SUFFIX=_openmpi
+TMPDIR=/scratch/3179637.1.gpu.q
+RESTARTED=0
+LMOD_sys=Linux
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0ge30sCm1UID0gewpTYWxpID0gewphY3Rpb25BID0gewpbW3ByZXBlbmRfcGF0aCgiTU9EVUxFUEFUSCIsIi9zYWxpbGFiL2RpdmExL2hvbWUvbW9kdWxlcyIpXV0sCn0sCmZuID0gIi9ldGMvbW9kdWxlZmlsZXMvU2FsaS5sdWEiLApmdWxsTmFtZSA9ICJTYWxpIiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJTYWxpIiwKd1YgPSAiTS4qemZpbmFsIiwKfSwKY3VkYSA9IHsKZm4gPSAiL2V0Yy9tb2R1bGVmaWxlcy9j
+LOADEDMODULES=mpi/openmpi-x86_64:Sali:cuda/12.5
+SGE_O_PATH=/wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA/bin:/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:/opt/sge/bin:/opt/sge/bin/lx-amd64:/wynton/home/rotation/jessicaflowers/.vscode-server/cli/servers/Stable-385651c938df8a906869babee516bffd0ddb9829/server/bin/remote-cli:/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:/wynton/home/rotation/jessicaflowers/miniconda2/envs/rip_gromacs_py3/bin:/wynton/home/rotation/jessicaflowers/miniconda2/condabin:/wynton/home/rotation/jessicaflowers/.local/bin:/wynton/home/rotation/jessicaflowers/bin:/opt/sge/bin:/opt/sge/bin/lx-amd64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:~/Tools/openbabel-install/bin:/wynton/home/rotation/jessicaflowers/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:~/Tools/openbabel-install/bin
+SGE_O_SHELL=/bin/bash
+__LMOD_REF_COUNT_MANPATH=:2;/usr/share/man/openmpi-x86_64:1;/opt/sge/man:1;/usr/share/lmod/lmod/share/man:1
+MPI_INCLUDE=/usr/include/openmpi-x86_64
+_ModuleTable003_=Cn0sCm1wYXRoQSA9IHsKIi9zYWxpbGFiL2RpdmExL2hvbWUvbW9kdWxlcyIsICIvZXRjL21vZHVsZWZpbGVzIiwgIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiCiwgIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXgiLCAiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwgIi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLAp9LApzeXN0ZW1CYXNlTVBBVEggPSAiL2V0Yy9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLAp9Cg==
+LMOD_ROOT=/usr/share/lmod
+CONDA_PROMPT_MODIFIER=(base) 
+SYSTEMCTL_SKIP_REDIRECT=
+MAIL=/var/spool/mail/jessicaflowers
+SGE_CWD_PATH=/wynton/home/rotation/jessicaflowers/modified_RIP/run1
+MPI_HOME=/usr/lib64/openmpi
+SGE_TASK_STEPSIZE=1
+CUDA_VISIBLE_DIVICES=0
+SHELL=/bin/bash
+TERM=
+_ModuleTable_Sz_=3
+SGE_JOB_SPOOL_DIR=/var/spool/sge/wynton/msg-iogpu6/active_jobs/3179637.1
+JOB_ID=3179637
+R_FUTURE_AVAILABLECORES_FALLBACK=1
+JOB_SCRIPT=/var/spool/sge/wynton/msg-iogpu6/job_scripts/3179637
+SHLVL=2
+SGE_O_LOGNAME=jessicaflowers
+SGE_O_MAIL=/var/spool/mail/jessicaflowers
+MANPATH=:/usr/share/man/openmpi-x86_64:/opt/sge/man:/usr/share/lmod/lmod/share/man
+MODULEPATH=/salilab/diva1/home/modules:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+MPI_SYSCONFIG=/etc/openmpi-x86_64
+LOGNAME=jessicaflowers
+SYSTEMCTL_IGNORE_DEPENDENCIES=
+MODULEPATH_ROOT=/usr/share/modulefiles
+PATH=/usr/local/cuda-12.5/bin:/usr/lib64/openmpi/bin:/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:/wynton/home/rotation/jessicaflowers/miniconda2/bin:/wynton/home/rotation/jessicaflowers/miniconda2/condabin:/wynton/home/rotation/jessicaflowers/.local/bin:/wynton/home/rotation/jessicaflowers/bin:/opt/sge/bin:/opt/sge/bin/lx-amd64:/scratch/3179637.1.gpu.q:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/wynton/home/rotation/jessicaflowers/Tools/openbabel-install/bin
+MPI_BIN=/usr/lib64/openmpi/bin
+SGE_STDERR_PATH=/wynton/home/rotation/jessicaflowers/modified_RIP/run1/sge_logs
+_LMFILES_=/usr/share/modulefiles/mpi/openmpi-x86_64:/etc/modulefiles/Sali.lua:/etc/modulefiles/cuda/12.5
+DEBUGINFOD_URLS=https://debuginfod.centos.org/ 
+SGE_GPU=0
+MODULESHOME=/usr/share/lmod/lmod
+PKG_CONFIG_PATH=/usr/lib64/openmpi/lib/pkgconfig
+CONDA_DEFAULT_ENV=base
+LMOD_SETTARG_FULL_SUPPORT=no
+HISTSIZE=1000
+SGE_ARCH=lx-amd64
+LMOD_PKG=/usr/share/lmod/lmod
+ARC=lx-amd64
+MPI_LIB=/usr/lib64/openmpi/lib
+SGE_BINARY_PATH=/opt/sge/bin/lx-amd64
+SGE_STDOUT_PATH=/wynton/home/rotation/jessicaflowers/modified_RIP/run1/sge_logs
+LMOD_CMD=/usr/share/lmod/lmod/libexec/lmod
+REQNAME=rip_3g33
+MPI_MAN=/usr/share/man/openmpi-x86_64
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+OMP_NUM_THREADS=8
+SGE_CLUSTER_NAME=wynton_cluster
+LMOD_DIR=/usr/share/lmod/lmod/libexec
+BASH_FUNC_which%%=() {  ( alias;
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "$-" in 
+ *v*x*)
+ __lmod_sh_dbg='vx'
+ ;;
+ *v*)
+ __lmod_sh_dbg='v'
+ ;;
+ *x*)
+ __lmod_sh_dbg='x'
+ ;;
+ esac;
+ fi;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ set +$__lmod_sh_dbg;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ fi;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ __lmod_my_status=$?;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ echo "Shell debugging restarted" 1>&2;
+ set -$__lmod_sh_dbg;
+ fi;
+ unset __lmod_sh_dbg;
+ return $__lmod_my_status
+}
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+}
+_=/bin/printenv
+==============================================================
+job_number:                 3179637
+exec_file:                  job_scripts/3179637
+submission_time:            Wed Mar  4 17:35:17 2026
+owner:                      jessicaflowers
+uid:                        63593
+group:                      wynton-rotation
+gid:                        60001
+sge_o_home:                 /wynton/home/rotation/jessicaflowers
+sge_o_log_name:             jessicaflowers
+sge_o_path:                 /wynton/home/rotation/jessicaflowers/software/gromacs/2025.4_CUDA/bin:/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:/opt/sge/bin:/opt/sge/bin/lx-amd64:/wynton/home/rotation/jessicaflowers/.vscode-server/cli/servers/Stable-385651c938df8a906869babee516bffd0ddb9829/server/bin/remote-cli:/wynton/home/fraserlab/jessicaflowers/phenix/phenix-1.20.1-4487/phenix_env.sh:/wynton/home/rotation/jessicaflowers/miniconda2/envs/rip_gromacs_py3/bin:/wynton/home/rotation/jessicaflowers/miniconda2/condabin:/wynton/home/rotation/jessicaflowers/.local/bin:/wynton/home/rotation/jessicaflowers/bin:/opt/sge/bin:/opt/sge/bin/lx-amd64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:~/Tools/openbabel-install/bin:/wynton/home/rotation/jessicaflowers/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:~/Tools/openbabel-install/bin
+sge_o_shell:                /bin/bash
+sge_o_workdir:              /wynton/home/rotation/jessicaflowers/modified_RIP/run1
+sge_o_host:                 dev2
+account:                    sge
+cwd:                        /wynton/home/rotation/jessicaflowers/modified_RIP/run1
+reserve:                    y
+merge:                      y
+hard resource_list:         mem_free=4G,h_rt=7200,hostname=!(qb3-idgpu11|qb3-idgpu6|qb3-idgpu10|qb3-iogpu1)
+mail_list:                  jessicaflowers@dev2.wynton.ucsf.edu
+notify:                     FALSE
+job_name:                   rip_3g33
+stdout_path_list:           NONE:NONE:sge_logs
+jobshare:                   0
+hard_queue_list:            gpu.q
+shell_list:                 NONE:/bin/bash
+env_list:                   TERM=NONE
+script_file:                submit.sh
+project:                    wynton-rotation
+job-array tasks:            1-1:1
+maximum concurrency:        1
+binding:                    NONE
+job_type:                   NONE
+usage         1:            cpu=00:00:00, mem=0.00000 GB s, io=0.00000 GB, vmem=N/A, maxvmem=N/A
+binding       1:            NONE
+scheduling info:            (Collecting of scheduler job information is turned off)

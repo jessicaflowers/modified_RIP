@@ -23,7 +23,8 @@ _ATOM_DEBUG_COUNT = 0
 
 # Defaults 
 TOP = "../input/topol.top"
-MIN_OUTPUT = "seg_01_MIN"   # base name (without .gro)
+# MIN_OUTPUT = "seg_01_MIN"   # base name (without .gro)
+MIN_OUTPUT = "seg_11_NPT_PROD_01"  # starting from production phase, rather than minimized strucutre
 TEMP_PERTURB = 300.0        # K
 OUT_NAME = "seg_01_PERT.gro"
 BOX_LINE = None
@@ -642,7 +643,7 @@ def get_residue_list(soup):
                 break
         return res_list
 
-def main(top=TOP, min_base=MIN_OUTPUT, temp=TEMP_PERTURB):
+def main(top=TOP, min_base=MIN_OUTPUT, temp=TEMP_PERTURB, target_resnums=None):
     gro = min_base + ".gro"
     if not os.path.isfile(gro):
         print("Minimized gro not found:", gro)
@@ -655,6 +656,20 @@ def main(top=TOP, min_base=MIN_OUTPUT, temp=TEMP_PERTURB):
     master_soup = load_soup(top, gro)
     residues = get_residue_list(master_soup)
 
+    # normalize target_resnums into a set of ints (or None to process all)
+    target_set = None
+    if target_resnums is not None:
+        if isinstance(target_resnums, (list, set)):
+            try:
+                target_set = set(int(x) for x in target_resnums)
+            except Exception:
+                target_set = None
+        else:
+            try:
+                target_set = set(int(x) for x in str(target_resnums).split(',') if x.strip())
+            except Exception:
+                target_set = None
+
     for res in residues:
         nchi = pdbstruct.get_n_chi(res)
         if nchi <= 0:
@@ -666,6 +681,9 @@ def main(top=TOP, min_base=MIN_OUTPUT, temp=TEMP_PERTURB):
         if resnum is None:
             # fallback to position in list
             resnum = residues.index(res)
+        # if the caller requested a specific residue(s), skip others
+        if target_set is not None and resnum not in target_set:
+            continue
         out_dir = f"pulse_res_{resnum}"
         if os.path.isdir(out_dir):
             print("Skipping existing:", out_dir)
@@ -724,5 +742,12 @@ if __name__ == "__main__":
         top = sys.argv[2]
     if len(sys.argv) > 3:
         temp = float(sys.argv[3])
-    main(top=top, min_base=min_base, temp=temp)
-# ...existing code...
+    # optional fourth arg: single residue number or comma-separated list (e.g. "203" or "203,205")
+    target_resnums = None
+    if len(sys.argv) > 4:
+        try:
+            target_resnums = [int(x) for x in sys.argv[4].split(',') if x.strip()]
+        except Exception:
+            target_resnums = None
+
+    main(top=top, min_base=min_base, temp=temp, target_resnums=target_resnums)
