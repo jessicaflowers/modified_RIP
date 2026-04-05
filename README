@@ -1,4 +1,4 @@
-# Modified RIP (Rotamerically Induced Perturbation) Procedure
+#Modified RIP (Rotamerically Induced Perturbation) Procedure
 
 The pipeline has two steps:
 1. **rip_perturb.py** — generates perturbed .gro files (one per residue)
@@ -17,9 +17,6 @@ The pipeline has two steps:
     │       ├── run_dynamics.sh
     │       ├── submit.sh
     │       ├── seg_11_NPT_PROD_01.gro   # equilibrated starting structure
-    │       ├── pulse_res_131/            # output for residue 131
-    │       ├── pulse_res_187/            # output for residue 187
-    │       └── ...
     └── 3g33/                   # protein 2 (SRC kinase)
         ├── input/
         ├── mdp/
@@ -29,9 +26,7 @@ The pipeline has two steps:
 
 ## Step 1: Generate perturbed structures with rip_perturb.py
 
-Run from the run2/ directory. The script reads the equilibrated .gro file,
-applies chi-angle velocity pulses to the specified residue(s), and writes
-a perturbed .gro into a pulse_res_<num>/ subdirectory.
+Run from the run2/ directory. The script reads the equilibrated .gro file, applies a single chi-angle velocity pulse to the specified residue(s), and writes a perturbed .gro into a pulse_res_<num>/ subdirectory.
 
 ### Usage
 
@@ -45,7 +40,7 @@ a perturbed .gro into a pulse_res_<num>/ subdirectory.
     topology          Path to the GROMACS topology file.
                       Default: ../input/topol.top
 
-    temperature       Perturbation temperature in Kelvin. Controls how much
+    temperature       (Optional) Perturbation temperature in Kelvin. Controls how much
                       kinetic energy the chi-angle pulses carry. Should be
                       higher than the simulation temperature (310.15 K) to
                       produce a meaningful perturbation.
@@ -69,16 +64,14 @@ Perturb ALL rotatable residues using defaults:
 
     python rip_perturb.py
 
-This will create a pulse_res_<num>/ directory for every residue that has
-at least one chi angle (excluding GLY, ALA, and PRO). Residues that already
-have an existing pulse_res_<num>/ directory are skipped automatically.
+This will create a pulse_res_<num>/ directory for every residue that has at least one chi angle. Residues that already have an existing pulse_res_<num>/ directory are skipped automatically.
 
 ### What it creates
 
 For each perturbed residue, the script creates:
 
     pulse_res_<num>/
-    ├── seg_11_NPT_PROD_01_PERT.gro   # perturbed starting structure
+    ├── seg_11_NPT_PROD_01_PERT.gro     # perturbed starting structure
     └── topol.top                       # copy of the topology
 
 
@@ -95,15 +88,12 @@ From the run2/ directory:
 
 ### How it works
 
-- Each SGE array task (1-150) searches for the next pulse_res_<num>/
-  directory starting from its task ID
+- Each SGE array task (1-150) searches for the next pulse_res_<num>/ directory starting from its task ID
 - Inside that directory, it runs run_dynamics.sh which:
   1. Runs gmx grompp to prepare the .tpr
   2. Runs gmx mdrun for production MD
-  3. Loops PROD_REPEAT times (default: 10), each time continuing from
-     the previous iteration's output
-  4. If a task gets killed at the walltime limit (2 hours), the next
-     array task picks up from the checkpoint (.cpt) file
+  3. Loops PROD_REPEAT times (default: 10), each time continuing from the previous iteration's output
+  4. If a task gets killed at the walltime limit (2 hours), the next array task picks up from the checkpoint (.cpt) file
 
 ### Key parameters in run_dynamics.sh
 
@@ -116,62 +106,6 @@ From the run2/ directory:
     dt       = 0.004          # 4 fs timestep (with HMR factor 3)
     nsteps   = 500000         # 2 ns per chunk (x10 repeats = 20 ns total)
     ref-t    = 310.15         # simulation temperature (K)
-    tcoupl   = v-rescale      # thermostat
-    pcoupl   = c-rescale      # barostat
+    tcoupl   = v-rescale      # thermostat (turining this off is necessary for RIP bus also crashed the simulation for some reason ... need to debug)
+    pcoupl   = c-rescale      # barostat (turining this off is necessary for RIP bus also crashed the simulation for some reason ... need to debug)
     nstxout-compressed = 25000  # write frame every 100 ps
-
-
-## Step 3: Post-processing with wrapping.sh
-
-After MD finishes, run wrapping.sh inside the pulse_res_<num>/ directory
-to concatenate, center, and align the trajectory:
-
-    cd pulse_res_203/
-    bash wrapping.sh
-
-This produces:
-- *.concate.xtc    — all chunks concatenated into one trajectory
-- *.center.xtc     — PBC artifacts fixed, protein centered in box
-- *.alignedXYZ.xtc — least-squares fit to reference (for visualization)
-
-Use the .center.xtc file for quantitative analysis (RMSD, RMSF, etc.).
-Use the .alignedXYZ.xtc file for visual inspection in VMD/PyMOL.
-
-
-## Quick-start example (3g33, residue 203)
-
-    cd modified_RIP/3g33/run2/
-
-    # Generate perturbed structure for residue 203 at 350 K
-    python rip_perturb.py seg_11_NPT_PROD_01 ../input/topol.top 350 203
-
-    # Submit MD to cluster
-    qsub submit.sh
-
-    # After jobs finish, post-process
-    cd pulse_res_203/
-    bash wrapping.sh
-
-
-## Quick-start example (all residues)
-
-    cd modified_RIP/1hck/run2/
-
-    # Generate perturbed structures for ALL rotatable residues
-    python rip_perturb.py
-
-    # Submit — array tasks will find and run each pulse_res_<num>/ directory
-    qsub submit.sh
-
-
-## Notes
-
-- GLY and ALA have no chi angles and cannot be perturbed.
-- PRO is explicitly skipped (rigid ring constrains chi1).
-- If a pulse_res_<num>/ directory already exists, rip_perturb.py skips it.
-  Delete the directory to regenerate.
-- The perturbation temperature (argv[3]) should be meaningfully above 310 K.
-  At 310 K the pulse just reshuffles velocities at the simulation temperature
-  with no net perturbation.
-- The submit.sh exclusion list (#$ -l hostname=!...) can be updated to
-  avoid problematic GPU nodes that cause CUDA errors.
