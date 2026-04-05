@@ -9,7 +9,7 @@
 
 ; Include forcefield parameters
 #include "toppar/forcefield.itp"
-#include "toppar/PROC.itp"
+#include "toppar/PROA.itp"
 #include "toppar/SOD.itp"
 #include "toppar/CLA.itp"
 #include "toppar/TIP3.itp"
@@ -20,7 +20,7 @@ Title
 
 [ molecules ]
 ; Compound	#mols
-PROC  	           1
-SOD   	          64
-CLA   	          62
-TIP3  	       21782
+PROA  	           1
+SOD   	          49
+CLA   	          53
+TIP3  	       17471

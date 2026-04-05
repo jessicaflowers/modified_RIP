@@ -8,7 +8,7 @@ import copy
 import sys
 import re
 
-parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 if parent not in sys.path:
     sys.path.insert(0, parent)
 
@@ -25,7 +25,7 @@ _ATOM_DEBUG_COUNT = 0
 TOP = "../input/topol.top"
 # MIN_OUTPUT = "seg_01_MIN"   # base name (without .gro)
 MIN_OUTPUT = "seg_11_NPT_PROD_01"  # starting from production phase, rather than minimized strucutre
-TEMP_PERTURB = 300.0        # K
+TEMP_PERTURB = 350.0        # K
 OUT_NAME = "seg_11_NPT_PROD_01_PERT.gro"
 BOX_LINE = None
 
@@ -84,6 +84,14 @@ def anderson_velocity_scale(atoms, temp, n_degree_of_freedom):
         com.scale(1.0 / total_mass)
         for a in atoms:
             a.vel -= com
+    # --- NEW CODE: re-scale after COM removal to restore target KE ---
+    # COM removal subtracts energy (especially for correlated rotational
+    # velocities). Re-scale so total KE matches the target.
+    kin_after_com = kinetic_energy(atoms)
+    if not vector3d.is_near_zero(kin_after_com):
+        rescale = math.sqrt(target_energy / kin_after_com)
+        for a in atoms:
+            a.vel.scale(rescale)
 
 # --- rotational / chi utilities ---
 def moment_of_inertia(atom, axis, anchor):
@@ -172,9 +180,21 @@ def randomize_clean_high_chi_with_attractor(
     n_chi = pdbstruct.get_n_chi(res)
     rot_vels = [get_rot_vel_chi(res, i) for i in range(n_chi)]
 
-    # clear all velocities of this residue
-    for atom in res.atoms():
+    # --- OLD CODE: zeroed ALL residue velocities (backbone + sidechain) ---
+    # # clear all velocities of this residue
+    # for atom in res.atoms():
+    #     atom.vel.set(0.0, 0.0, 0.0)
+    # --- END OLD CODE ---
+
+    # --- NEW CODE: zero only sidechain velocities (nesting >= 0) ---
+    # Backbone atoms (N, HN, CA, HA, CB, C, O — nesting < 0) keep their
+    # equilibrium velocities. Only sidechain atoms that participate in chi
+    # rotations are zeroed before receiving fresh RIP pulses.
+    sidechain_atoms = [atom for atom in res.atoms()
+                       if pdbstruct.get_atom_sidechain_nesting(atom.type) >= 0]
+    for atom in sidechain_atoms:
         atom.vel.set(0.0, 0.0, 0.0)
+    # --- END NEW CODE ---
 
     for i_chi in reversed(list(range(n_chi))):
         # decide sign/direction using attractor logic
@@ -190,7 +210,14 @@ def randomize_clean_high_chi_with_attractor(
         target_rot_vel = sign * get_random_chi_rot_vel(res, i_chi, temp)
         add_rot_vel_to_chi(res, i_chi, target_rot_vel)
 
-    anderson_velocity_scale(res.atoms(), temp, 3 * len(res.atoms()))
+    # --- OLD CODE: Anderson-scaled ALL atoms (including zeroed backbone) ---
+    # anderson_velocity_scale(res.atoms(), temp, 3 * len(res.atoms()))
+    # --- END OLD CODE ---
+
+    # --- NEW CODE: Anderson-scale only the sidechain atoms that were perturbed ---
+    # This avoids the COM imbalance from mixing zero-velocity backbone atoms
+    # with chi-pulsed sidechain atoms, which was removing ~39% of kinetic energy.
+    anderson_velocity_scale(sidechain_atoms, temp, 3 * len(sidechain_atoms))
 
 def read_top(top):
     # Returns: (masses_list, total_qtot, atomtype_mass_map)
@@ -291,8 +318,8 @@ def AtomFromGroLine(line):
     atom.res_type = line[5:10].strip()
     atom.type = line[10:15].strip()
     # print(f'atom.res_num: {atom.res_num}, atom.res_type: {atom.res_type}, atom.type: {atom.type}')
-    if atom.res_type == "ILE" and atom.type == "CD":
-        atom.type = "CD1"
+    # if atom.res_type == "ILE" and atom.type == "CD":
+    #     atom.type = "CD1"
     element = ''
     for c in line[12:15]:
         if not c.isdigit() and c != " ":

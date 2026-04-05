@@ -10,9 +10,9 @@
 #$ -R yes               #-- SGE host reservation
 ##$ -l hostname=!(‘qb3-atgpu*‘|'qb3-atgpu**‘|'qb3-iogpu4'|'qb3-idgpu11'|'qb3-idgpu15')
 #$ -l hostname=!('qb3-idgpu11'|'qb3-idgpu6'|'qb3-idgpu10'|'qb3-iogpu1')
-#$ -N rip_3g33
-##$ -t 1-150
-#$ -t 1-1  
+#$ -N rip_3g33_run2
+#$ -t 1-150
+##$ -t 1-1  
 #$ -tc 1
 
 # Load modules
@@ -25,7 +25,7 @@ module load cuda/12.5 # cuda12.X for Gromacs2023/4/5
 # How many OpenMP thread to use
 export OMP_NUM_THREADS=8
 # Which GPU device to use
-export CUDA_VISIBLE_DIVICES=$SGE_GPU
+export CUDA_VISIBLE_DEVICES=$SGE_GPU
 echo "Starting Task ID: $SGE_TASK_ID"
 echo "Running on Host: $HOSTNAME"
 echo "Assigned GPU ID: $SGE_GPU"

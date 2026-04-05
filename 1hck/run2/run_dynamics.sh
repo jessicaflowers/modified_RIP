@@ -60,22 +60,45 @@ if [ ! -f "${MIN_OUTPUT}.gro" ]; then
 fi
 
 ISTEP_BASE=$(basename "${MDP_PATH}" .mdp)
-ISTEP="${ISTEP_BASE}_01"
+# Append _PERT to base so outputs (e.g. seg_11_NPT_PROD_PERT_01) are
+# distinct from the perturbed input (seg_11_NPT_PROD_01_PERT.gro)
+ISTEP_BASE="${ISTEP_BASE}_PERT"
 
 echo "Running production MDP: ${MDP_PATH}"
-echo "Start structure: ${MIN_OUTPUT}.gro -> output deffnm: ${ISTEP}"
 echo "Topology: ${TOP}"
 
-# If a checkpoint for this deffnm exists, use it, otherwise start from MIN_OUTPUT
-CPT_ARG=""
-[ -f "${ISTEP}.cpt" ] && CPT_ARG="-t ${ISTEP}.cpt"
+for (( r=1; r<=PROD_REPEAT; r++ )); do
+    iter=$(printf "%02d" "$r")
+    ISTEP="${ISTEP_BASE}_${iter}"
 
-gmx grompp -f "${MDP_PATH}" -o "${ISTEP}".tpr ${CPT_ARG} -c "${MIN_OUTPUT}".gro -r "${MIN_OUTPUT}".gro -p "${TOP}" -n "${NDX}" -maxwarn 10
-gmx mdrun -v -deffnm "${ISTEP}" -nt "${NTHREAD}" -ntomp "${NTOMP}" -ntmpi 1 -nb gpu -bonded gpu -pin off
+    # Skip iterations that already finished
+    if [ -f "${ISTEP}.log" ] && grep -q "Finished mdrun" "${ISTEP}.log" 2>/dev/null; then
+        echo "Iteration ${iter} already finished. Skipping."
+        continue
+    fi
 
-echo "Production run finished (or failed). Check ${ISTEP}.log and ${ISTEP}.trr/.cpt for outputs."
+    # If a checkpoint exists from a killed run, resume directly with mdrun
+    if [ -f "${ISTEP}.cpt" ] && [ -f "${ISTEP}.tpr" ]; then
+        echo "Resuming ${ISTEP} from checkpoint."
+        gmx mdrun -v -deffnm "${ISTEP}" -cpi "${ISTEP}".cpt -nt "${NTHREAD}" -ntomp "${NTOMP}" -ntmpi 1 -nb gpu -bonded gpu -pin off
+        continue
+    fi
 
-exit 0
-if [ -z "${PROD_MDPS}" ]; then
+    # Determine the previous step's structure
+    if [ "$r" -eq 1 ]; then
+        PSTEP="${MIN_OUTPUT}"
+    else
+        prev_iter=$(printf "%02d" $((r - 1)))
+        PSTEP="${ISTEP_BASE}_${prev_iter}"
+    fi
 
-    echo "No production MDP files (seg_*PROD*.mdp) found in ${MDP_DIR}; nothing to run."
+    echo "----Running ${ISTEP} (Previous step: ${PSTEP})----"
+
+    CPT_ARG=""
+    [ -f "${PSTEP}.cpt" ] && CPT_ARG="-t ${PSTEP}.cpt"
+
+    gmx grompp -f "${MDP_PATH}" -o "${ISTEP}".tpr ${CPT_ARG} -c "${PSTEP}".gro -r "${PSTEP}".gro -p "${TOP}" -n "${NDX}" -maxwarn 10
+    gmx mdrun -v -deffnm "${ISTEP}" -nt "${NTHREAD}" -ntomp "${NTOMP}" -ntmpi 1 -nb gpu -bonded gpu -pin off
+done
+
+echo "Production run finished. Check logs for outputs."

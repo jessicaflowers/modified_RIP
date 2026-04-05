@@ -1,7 +1,7 @@
 ; This gromacs .mdp file was generated
-; as /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/seg_11_NPT_PROD.mdp
-; by /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/3g33_110/3g33_110/gromacs/dynamics-parameter-generation.py
-; on 2026-01-24 08:29:12.548016
+; as /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/1hck_110/1hck_110/gromacs/seg_10_NPT_EQ.mdp
+; by /Users/jessicaflowers/Desktop/winter_rotation/GROMACS/1hck_110/1hck_110/gromacs/dynamics-parameter-generation.py
+; on 2026-01-24 08:39:12.221858
 
 ; input handling
 gen-vel                  = no
@@ -9,12 +9,10 @@ continuation             = yes
 
 ; integration
 integrator               = md
-dt                       = 0.004 ; 0.004 ps = 4 fs
-; nsteps                   = 25000000 ; multiply by dt to get total length = 100,000 ps = 100 ns
-nsteps                   = 500000 ; multiply by dt to get total length = 2 ns
-
-tinit                    = 21800.0
-mass-repartition-factor  = 3
+dt                       = 0.002
+nsteps                   = 5000000
+tinit                    = 11800.0
+mass-repartition-factor  = 1
 
 ; bonded interactions
 constraints              = h-bonds
@@ -57,6 +55,6 @@ compressibility          = 4.5e-05
 refcoord-scaling         = com
 
 ; output control; frequencies in steps
-nstlog                   = 25000
-nstenergy                = 25000
-nstxout-compressed       = 25000
+nstlog                   = 5000
+nstenergy                = 5000
+nstxout-compressed       = 5000
