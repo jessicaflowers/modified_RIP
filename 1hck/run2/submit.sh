@@ -22,20 +22,13 @@ module load cuda/12.5 # cuda12.X for Gromacs2023/4/5
 
 
 # Environment Variables
-# How many OpenMP thread to use
 export OMP_NUM_THREADS=8
-# Which GPU device to use
 export CUDA_VISIBLE_DEVICES=$SGE_GPU
 echo "Starting Task ID: $SGE_TASK_ID"
 echo "Running on Host: $HOSTNAME"
 echo "Assigned GPU ID: $SGE_GPU"
 
 # Run job
-# If this is an array job where each task corresponds to a pulse_res_<num> directory,
-# cd into that directory and run the dynamics script there. Preserve the old behavior
-# by keeping original line commented.
-# bash run_dynamics.sh
-
 
 # starting at SGE_TASK_ID, search forward for the first existing
 # pulse_res_<n> directory and run the dynamics there
