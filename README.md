@@ -17,7 +17,7 @@ The pipeline has two steps:
     │       ├── run_dynamics.sh
     │       ├── submit.sh
     │       ├── seg_11_NPT_PROD_01.gro   # equilibrated starting structure
-    └── 3g33/                   # protein 2 (SRC kinase)
+    └── 3g33/                   # protein 2 (CDK4 kinase)
         ├── input/
         ├── mdp/
         └── run2/
