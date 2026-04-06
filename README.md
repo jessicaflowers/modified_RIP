@@ -109,3 +109,21 @@ From the run2/ directory:
     tcoupl   = v-rescale      # thermostat (turining this off is necessary for RIP bus also crashed the simulation for some reason ... need to debug)
     pcoupl   = c-rescale      # barostat (turining this off is necessary for RIP bus also crashed the simulation for some reason ... need to debug)
     nstxout-compressed = 25000  # write frame every 100 ps
+
+### Notes
+
+Steps to create the /input and /mdp folders if you wish to start from scratch:
+
+Use solution builder from CHARMM-GUI for the initial set up. It should generate a bunch of folders and files with the general format:
+
+    charmm-gui/
+    ├── tons of input files (ie .pdb, .cif, .in, .crd, etc.)
+    ├── gromacs/              
+        ├── README
+        ├── step3_input.gro
+        ├── other important files
+        ├── THIS IS WHERE YOU SHOULD COPY dynamics-parameter-generation.py
+    ├── toppar/                   
+    │   ├── so many files, not important to discuss
+
+When this is complete, you will want to take the dynamics-parameter-generation.py from this repo, copy it into the \gromacs folder, and run it. This will generate the /input and /mdp folders that are required to run the MD simulations.  
