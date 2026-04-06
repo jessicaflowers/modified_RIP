@@ -1,4 +1,4 @@
-#Modified RIP (Rotamerically Induced Perturbation) Procedure
+# Modified RIP (Rotamerically Induced Perturbation) Procedure
 
 The pipeline has two steps:
 1. **rip_perturb.py** — generates perturbed .gro files (one per residue)
